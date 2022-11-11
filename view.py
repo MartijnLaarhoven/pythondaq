@@ -1,4 +1,4 @@
-# Gemaakt door Martijn Laarhoven 12579866 op 11/11/2022
+# Gemaakt door Martijn Laarhoven 12579866 op 4/11/2022 tot 11/11/2022
 
 import matplotlib.pyplot as plt
 import pandas as pd
