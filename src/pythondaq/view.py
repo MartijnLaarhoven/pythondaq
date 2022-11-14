@@ -3,8 +3,6 @@
 import matplotlib.pyplot as plt
 import csv
 
-# from pythondaq.arduino_device import ArduinoVISADevice, list_devices
-
 from pythondaq.diode_experiment import DiodeExperiment
 
 port = "ASRL4::INSTR"
