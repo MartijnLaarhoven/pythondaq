@@ -5,6 +5,7 @@ import csv
 
 from pythondaq.diode_experiment import DiodeExperiment
 
+# Function to run view in command
 def view():
 
     port = "ASRL4::INSTR"
