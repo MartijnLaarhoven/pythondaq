@@ -1,6 +1,6 @@
 # Gemaakt door Martijn Laarhoven 12579866 op 11/11/2022
 
-from src.pythondaq.arduino_device import ArduinoVISADevice, list_devices
+from arduino_device import ArduinoVISADevice, list_devices
 
 class DiodeExperiment:
 

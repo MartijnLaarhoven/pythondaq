@@ -8,7 +8,6 @@ class ArduinoVISADevice:
     def __init__(self, port):
         rm = pyvisa.ResourceManager("@py")
         ports = rm.list_resources()
-        print(ports)
         self.device = rm.open_resource(port, read_termination="\r\n", write_termination="\n")
 
     # find identification string
