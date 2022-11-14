@@ -18,7 +18,7 @@ plt.scatter(voltagelist,Currentlist, s=5,c='green')
 plt.xlabel('$U_\mathrm{LED}$ [V]')
 plt.ylabel('$I$ [A]')
 plt.show()
- 
+
 
 # Het maken van een csv file
 with open("adruinodata.txt", "w",newline="") as f:
