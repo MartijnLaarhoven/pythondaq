@@ -28,7 +28,6 @@ def view():
             writer.writerow([u,i])
 
 
-
 # opdracht 3.7 is niet gelukt door de tijd.
 # Het idee van opdracht 3.7 was om de fout op de waarden te vinden, dit zou gedaan kunnen worden door de meting een aantal keer te doen, 
 # daar het gemiddelde van te nemen en de fout als de standaarddeviatie / sqrt(n) te nemen.
