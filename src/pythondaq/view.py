@@ -5,24 +5,28 @@ import csv
 
 from pythondaq.diode_experiment import DiodeExperiment
 
-port = "ASRL4::INSTR"
+def view():
 
-Experiment = DiodeExperiment()
+    port = "ASRL4::INSTR"
 
-voltagelist, Currentlist = Experiment.scan()
+    Experiment = DiodeExperiment()
 
-# plotje
-plt.scatter(voltagelist,Currentlist, s=5,c='green')
-plt.xlabel('$U_\mathrm{LED}$ [V]')
-plt.ylabel('$I$ [A]')
-plt.show()
+    voltagelist, Currentlist = Experiment.scan()
 
-# Het maken van een csv file
-with open("adruinodata.txt", "w",newline="") as f:
-    writer = csv.writer(f)
-    writer.writerow(["voltage_LED,Current_resistor"])
-    for u, i in zip(voltagelist,Currentlist):
-        writer.writerow([u,i])
+    # plotje
+    plt.scatter(voltagelist,Currentlist, s=5,c='green')
+    plt.xlabel('$U_\mathrm{LED}$ [V]')
+    plt.ylabel('$I$ [A]')
+    plt.show()
+
+    # Het maken van een csv file
+    with open("adruinodata.txt", "w",newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["voltage_LED,Current_resistor"])
+        for u, i in zip(voltagelist,Currentlist):
+            writer.writerow([u,i])
+
+
 
 # opdracht 3.7 is niet gelukt door de tijd.
 # Het idee van opdracht 3.7 was om de fout op de waarden te vinden, dit zou gedaan kunnen worden door de meting een aantal keer te doen, 
