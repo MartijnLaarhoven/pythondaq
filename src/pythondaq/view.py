@@ -7,7 +7,8 @@ from pythondaq.diode_experiment import DiodeExperiment
 
 # Function to run view in command
 def view():
-
+    """The view function which runs the experiment, plots and makes a csv file
+    """
     port = "ASRL4::INSTR"
 
     Experiment = DiodeExperiment()

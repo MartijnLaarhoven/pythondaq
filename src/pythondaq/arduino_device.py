@@ -3,9 +3,16 @@
 import pyvisa
 
 class ArduinoVISADevice:
+    """The class ArduinoVISADevice which gets and sets the values of the experiment
+    """
 
     # altijd eerst een init
     def __init__(self, port):
+        """The initial module 
+
+        Args:
+            port (string): The port which is given when running the module
+        """
         rm = pyvisa.ResourceManager("@py")
         ports = rm.list_resources()
         self.device = rm.open_resource(port, read_termination="\r\n", write_termination="\n")
@@ -34,11 +41,12 @@ class ArduinoVISADevice:
         return self.device.query(f"OUT:CH0 {0}")
 
 def list_devices():
+    """_summary_
+
+    Returns:
+        string: the ports
+    """
     rm = pyvisa.ResourceManager("@py")
     ports = rm.list_resources()
     return ports
-
-
-
-
 

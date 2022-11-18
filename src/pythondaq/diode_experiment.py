@@ -3,14 +3,20 @@
 from pythondaq.arduino_device import ArduinoVISADevice, list_devices
 
 class DiodeExperiment:
-
-    # Eerst een init
+    """The class which runs the experiment
+    """
     def __init__(self):
+        """The initial module which has the self function and the port
+        """
         port = "ASRL4::INSTR"
         self.device = ArduinoVISADevice(port=port)
 
-    # Functie om de scan te maken
     def scan(self):
+        """The scan function which makes the current and the voltagelists
+
+        Returns:
+            lists: Voltagelist and Currentlist
+        """
         # Het aanmaken van lijsten om later te kunnen plotten
         Currentlist = []
         voltagelist = []
