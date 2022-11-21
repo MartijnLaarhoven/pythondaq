@@ -24,12 +24,11 @@ def cmd_group():
     help = "endvalue in Volt",
 )
 @click.option(
-    "-m",
-    "--output/--no-makefile",
+    "-output",
     "--FILENAME",
     help = "make a CVS file",
 )
-def scan(startvalue, endvalue, output):
+def scan(startvalue, endvalue, filename):
     """running the experiment and making a csv file
     """
     port = "ASRL4::INSTR"
@@ -40,9 +39,9 @@ def scan(startvalue, endvalue, output):
     # plt.ylabel('$I$ [A]')
     # plt.show()
 
-    if output:
+    if filename:
     # making a csv file
-        with open("FILENAME.txt", "w",newline="") as f:
+        with open(f"{filename}.txt", "w",newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["voltage_LED,Current_resistor"])
             for u, i in zip(voltagelist,Currentlist):
