@@ -30,15 +30,15 @@ def cmd_group():
     help = "make a CVS file",
 )
 def scan(startvalue, endvalue, output):
-    """running the experiment and making a plot and a csv file
+    """running the experiment and making a csv file
     """
     port = "ASRL4::INSTR"
     Experiment = DiodeExperiment()
     voltagelist, Currentlist = Experiment.scan(int(startvalue*(1023/3.3)), int(endvalue*(1023/3.3)))
-    plt.scatter(voltagelist,Currentlist, s=5,c='green')
-    plt.xlabel('$U_\mathrm{LED}$ [V]')
-    plt.ylabel('$I$ [A]')
-    plt.show()
+    # plt.scatter(voltagelist,Currentlist, s=5,c='green')
+    # plt.xlabel('$U_\mathrm{LED}$ [V]')
+    # plt.ylabel('$I$ [A]')
+    # plt.show()
 
     if output:
     # making a csv file
