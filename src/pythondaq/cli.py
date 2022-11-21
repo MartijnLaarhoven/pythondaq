@@ -14,19 +14,19 @@ def cmd_group():
     "--startvalue",
     type=click.FloatRange(0, 3.3),
     default = 0,
-    help = "startvalue in Volt",
+    help = "startvalue in Volt, this value should be lower than the endvalue and a mimimum of 0 Volt. Type -s STARTVALUE (in Volt)",
 )
 @click.option(
     "-e",
     "--endvalue",
     type=click.FloatRange(0, 3.3),
     default = 3.3,
-    help = "endvalue in Volt",
+    help = "endvalue in Volt, this value should be higher than the startvalue and a maximum of 3.3 Volt. Type -e ENDVALUE (in Volt)",
 )
 @click.option(
     "-output",
     "--FILENAME",
-    help = "make a CVS file",
+    help = "make a CVS file, type -output FILENAME to make a csv file and name it with FILENAME",
 )
 def scan(startvalue, endvalue, filename):
     """running the experiment and making a csv file
