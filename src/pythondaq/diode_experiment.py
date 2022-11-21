@@ -1,8 +1,9 @@
 # Gemaakt door Martijn Laarhoven 12579866 op 11/11/2022
 
 from pythondaq.arduino_device import ArduinoVISADevice, list_devices
+import numpy as np
 
-class DiodeExperiment:
+class DiodeExperiment():
     """The class which runs the experiment
     """
     def __init__(self):
@@ -11,7 +12,7 @@ class DiodeExperiment:
         port = "ASRL4::INSTR"
         self.device = ArduinoVISADevice(port=port)
 
-    def scan(self):
+    def scan(self, startvalue, endvalue):
         """The scan function which makes the current and the voltagelists
 
         Returns:
@@ -22,7 +23,7 @@ class DiodeExperiment:
         voltagelist = []
 
         # Een for loop om het voltage steeds iets op te kunnen laten lopen
-        for Voltage in range(1023):
+        for Voltage in range(startvalue, endvalue):
 
             # Het voltage steeds iets verhogen
             self.device.set_output_value(Voltage)
@@ -40,5 +41,3 @@ class DiodeExperiment:
         self.device.turn_off_device()
 
         return voltagelist, Currentlist
-
-

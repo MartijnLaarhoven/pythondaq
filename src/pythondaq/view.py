@@ -12,7 +12,7 @@ def view():
 
     voltagelist, Currentlist = Experiment.scan()
 
-    # plotje
+    # making a plot
     plt.scatter(voltagelist,Currentlist, s=5,c='green')
     plt.xlabel('$U_\mathrm{LED}$ [V]')
     plt.ylabel('$I$ [A]')
