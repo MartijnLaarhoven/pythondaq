@@ -28,24 +28,30 @@ def cmd_group():
     "--FILENAME",
     help = "make a CVS file, type -output FILENAME to make a csv file and name it with FILENAME",
 )
-def scan(startvalue, endvalue, filename):
-    """running the experiment and making a csv file
+@click.option(
+    "--graph/--no-graph",
+    help = "make a plot, type --graph to make a plot",
+)
+def scan(startvalue, endvalue, filename, graph):
+    """running the experiment and making a csv file and a plot
     """
     port = "ASRL4::INSTR"
     Experiment = DiodeExperiment()
     voltagelist, Currentlist = Experiment.scan(int(startvalue*(1023/3.3)), int(endvalue*(1023/3.3)))
-    # plt.scatter(voltagelist,Currentlist, s=5,c='green')
-    # plt.xlabel('$U_\mathrm{LED}$ [V]')
-    # plt.ylabel('$I$ [A]')
-    # plt.show()
 
     if filename:
-    # making a csv file
+        # making a csv file
         with open(f"{filename}.txt", "w",newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["voltage_LED,Current_resistor"])
             for u, i in zip(voltagelist,Currentlist):
                 writer.writerow([u,i])
+    if graph:
+        # making a plot
+        plt.scatter(voltagelist,Currentlist, s=5,c='green')
+        plt.xlabel('$U_\mathrm{LED}$ [V]')
+        plt.ylabel('$I$ [A]')
+        plt.show()
     return 
 
 
