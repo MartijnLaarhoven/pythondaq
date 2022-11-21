@@ -1,11 +1,8 @@
-# Gemaakt door Martijn Laarhoven 12579866 op 4/11/2022 tot 11/11/2022
-
 import matplotlib.pyplot as plt
 import csv
 
 from pythondaq.diode_experiment import DiodeExperiment
 
-# Function to run view in command
 def view():
     """The view function which runs the experiment, plots and makes a csv file
     """
