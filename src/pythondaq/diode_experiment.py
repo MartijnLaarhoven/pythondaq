@@ -1,5 +1,3 @@
-# Gemaakt door Martijn Laarhoven 12579866 op 11/11/2022
-
 from pythondaq.arduino_device import ArduinoVISADevice, list_devices
 
 class DiodeExperiment():
@@ -40,3 +38,5 @@ class DiodeExperiment():
         self.device.turn_off_device()
 
         return voltagelist, Currentlist
+
+    # def 
