@@ -6,7 +6,6 @@ class ArduinoVISADevice:
     """The class ArduinoVISADevice which gets and sets the values of the experiment
     """
 
-    # altijd eerst een init
     def __init__(self, port):
         """The initial module 
 
@@ -17,12 +16,24 @@ class ArduinoVISADevice:
         ports = rm.list_resources()
         self.device = rm.open_resource(port, read_termination="\r\n", write_termination="\n")
 
-    # find identification string
     def get_identification(self):
+        """Identifying the device
+
+        Returns:
+            string: The device
+        """
         return self.device.query("*IDN?")
 
     #  set OUTPUT voltage on channel 0, using ADC values (0 - 1023)
     def set_output_value(self,Value):
+        """_summary_
+
+        Args:
+            Value (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         return self.device.query(f"OUT:CH0 {Value}")
 
     # get the output value of channel 0
@@ -44,7 +55,7 @@ def list_devices():
     """_summary_
 
     Returns:
-        string: the ports
+        Tuple: A list of strings
     """
     rm = pyvisa.ResourceManager("@py")
     ports = rm.list_resources()
