@@ -1,5 +1,3 @@
-# Gemaakt door Martijn Laarhoven 12579866 op 11/11/2022
-
 import pyvisa
 
 class ArduinoVISADevice:
@@ -24,35 +22,57 @@ class ArduinoVISADevice:
         """
         return self.device.query("*IDN?")
 
-    #  set OUTPUT voltage on channel 0, using ADC values (0 - 1023)
     def set_output_value(self,Value):
-        """_summary_
+        """The output value module which sets the output value
 
         Args:
-            Value (_type_): _description_
+            Value (int): The outpout value that is set on channel 0, having ADC values between 0-1023
 
         Returns:
-            _type_: _description_
+            int: value between 0 and 1023
         """
         return self.device.query(f"OUT:CH0 {Value}")
 
-    # get the output value of channel 0
     def get_output_value(self):
+        """get the output channel of CH0
+
+        Returns:
+            int: output value of CH0
+        """        
         return self.device.query(f"meas:CH0?")
 
-    # get the output value of a chosen channel
     def get_input_value(self,channel):
+        """get the input value of a chosen channel
+
+        Args:
+            channel (int): channel number
+
+        Returns:
+            int: the input value of the chosen channel
+        """
         return int(self.device.query(f"MEAS:CH{channel}?"))
 
-    # get the output voltage of a chosen channel
     def get_input_voltage(self,channel):
+        """get the output value of a chosen channel
+
+        Args:
+            channel (int): channel number
+
+        Returns:
+            int: the input voltage of the chosen channel
+        """
         return int(self.device.query(f"MEAS:CH{channel}?")) * (3.3/1023)
 
     def turn_off_device(self):
+        """turning off the device afterwards
+
+        Returns:
+            varible: putting the output value of channel 0 to 0
+        """
         return self.device.query(f"OUT:CH0 {0}")
 
 def list_devices():
-    """_summary_
+    """The list of the devices
 
     Returns:
         Tuple: A list of strings
