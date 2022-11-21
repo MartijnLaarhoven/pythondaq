@@ -71,13 +71,19 @@ class ArduinoVISADevice:
         """
         return self.device.query(f"OUT:CH0 {0}")
 
-def list_devices():
-    """The list of the devices
-
-    Returns:
-        Tuple: A list of strings
+class list_devices:
+    """The class to list the devices
     """
-    rm = pyvisa.ResourceManager("@py")
-    ports = rm.list_resources()
-    return ports
+    def __init__(self):
+        return
+
+    def list_devices_module():
+        """The list of the devices
+
+        Returns:
+            Tuple: A list of strings
+        """
+        rm = pyvisa.ResourceManager("@py")
+        ports = rm.list_resources()
+        return ports
 

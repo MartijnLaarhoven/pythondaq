@@ -1,7 +1,6 @@
 # Gemaakt door Martijn Laarhoven 12579866 op 11/11/2022
 
 from pythondaq.arduino_device import ArduinoVISADevice, list_devices
-import numpy as np
 
 class DiodeExperiment():
     """The class which runs the experiment

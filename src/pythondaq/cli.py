@@ -54,12 +54,10 @@ def scan(startvalue, endvalue, filename, graph):
         plt.show()
     return 
 
-
 @cmd_group.command()
 @click.option(
     "-l",
     "--list/--no_list",
-    default = 0,
     help = "list or no list"
 )
 def lijst(list):
