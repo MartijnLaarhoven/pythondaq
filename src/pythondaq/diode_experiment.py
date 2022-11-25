@@ -8,6 +8,8 @@ class DiodeExperiment():
         """
         port = "ASRL4::INSTR"
         self.device = ArduinoVISADevice(port=port)
+        # self.list_devices = list_devices
+        # return list_devices
 
     def scan(self, startvalue, endvalue):
         """The scan function which makes the current and the voltagelists
@@ -39,4 +41,3 @@ class DiodeExperiment():
 
         return voltagelist, Currentlist
 
-    # def 

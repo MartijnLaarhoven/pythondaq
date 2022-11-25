@@ -2,7 +2,7 @@ import click
 import matplotlib.pyplot as plt
 import csv
 
-from pythondaq.diode_experiment import DiodeExperiment
+from pythondaq.diode_experiment import DiodeExperiment, list_devices
 
 @click.group()
 def cmd_group():
@@ -54,13 +54,15 @@ def scan(startvalue, endvalue, filename, graph):
         plt.show()
     return 
 
-@cmd_group.command()
-@click.option(
-    "-l",
-    "--list/--no_list",
-    help = "list or no list"
-)
-def lijst(list):
-    print("list")
-    return
+# @cmd_group.command()
+# @click.option(
+#     "-l",
+#     "--lijst/--no_lijst",
+#     help = "list or no list"
+# )
+# def lijst(lijst):
+#     from list_devices 
+#     if lijst:
+#         print(ports)
+#     return
 
