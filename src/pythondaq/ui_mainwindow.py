@@ -76,9 +76,22 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
-        self.Startbutton = QPushButton(self.centralwidget)
+        self.horizontalLayoutWidget = QWidget(self.centralwidget)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(40, 560, 771, 80))
+        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.Startbutton = QPushButton(self.horizontalLayoutWidget)
         self.Startbutton.setObjectName(u"Startbutton")
-        self.Startbutton.setGeometry(QRect(34, 553, 781, 91))
+
+        self.horizontalLayout.addWidget(self.Startbutton)
+
+        self.SaveButton = QPushButton(self.horizontalLayoutWidget)
+        self.SaveButton.setObjectName(u"SaveButton")
+
+        self.horizontalLayout.addWidget(self.SaveButton)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -99,5 +112,6 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Endlabel", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Repeats", None))
         self.Startbutton.setText(QCoreApplication.translate("MainWindow", u"Start", None))
+        self.SaveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
     # retranslateUi
 

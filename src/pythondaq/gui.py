@@ -17,7 +17,11 @@ Experiment = DiodeExperiment()
 voltagelist, Currentlist = Experiment.scan(0,1023)
 
 class UserInterface(QtWidgets.QMainWindow):
+    """The class of the user interface which makes the interface
 
+    Args:
+        QtWidgets (module): the widgets which make the interface
+    """
     def __init__(self):
         """The init module
         """        
