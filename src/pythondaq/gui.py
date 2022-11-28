@@ -1,14 +1,10 @@
 import sys
 from PySide6 import QtWidgets
-import pyqtgraph as pg
 from PySide6.QtCore import Slot
-import numpy as np
+import pyqtgraph as pg
 from pythondaq.ui_mainwindow import Ui_MainWindow
 from pythondaq.diode_experiment import DiodeExperiment
 
-
-class UserInterface(QtWidgets.QMainWindow):
-    pass
 
 # PyQtGraph global options
 pg.setConfigOption("background", "w")
@@ -31,13 +27,17 @@ class UserInterface(QtWidgets.QMainWindow):
         self.ui.Starting.valueChanged.connect(self.plot)
         self.ui.Ending.valueChanged.connect(self.plot)
         self.ui.Numpoints_Value.valueChanged.connect(self.plot)
+        self.ui.Startbutton.clicked.connect(self.plot)
         self.plot()
 
     @Slot()
     def plot(self):
         """The plot module
-        """        
+        """
         self.ui.plot_widget.clear()
+        start = int(self.ui.Starting.value() * (1023/3.3))
+        end = int(self.ui.Ending.value() * (1023/3.3))
+        voltagelist, Currentlist = Experiment.scan(start,end)
         self.ui.plot_widget.plot(voltagelist, Currentlist, pen=None, symbol = 'o')
         self.ui.plot_widget.setLabel("left", "'I [A]'")
         self.ui.plot_widget.setLabel("bottom", 'U_LED [V]')

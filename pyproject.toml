@@ -29,5 +29,5 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 cli = "pythondaq.cli:cmd_group"
 Testing = "pythondaq.view:view"
-
+gui = "pythondaq.gui:main"
 
