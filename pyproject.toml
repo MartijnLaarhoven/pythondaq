@@ -6,12 +6,21 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">3.9, <3.12"
 matplotlib = "^3.6.2"
 numpy = "^1.23.4"
 pyvisa-py = "^0.5.3"
 pyserial = "^3.5"
+pyside6 = "^6.4.1"
+pyqtgraph = "^0.13.1"
 
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.16.5"
+
+[tool.poe.tasks.pooh]
+shell = """pyside6-uic src/pythondaq/mainwindow.ui -o src/pythondaq/ui_mainwindow.py"""
+interpreter =  "powershell"
 
 [build-system]
 requires = ["poetry-core"]
