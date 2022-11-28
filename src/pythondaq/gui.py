@@ -4,7 +4,7 @@ from PySide6.QtCore import Slot
 import pyqtgraph as pg
 from pythondaq.ui_mainwindow import Ui_MainWindow
 from pythondaq.diode_experiment import DiodeExperiment
-
+import csv
 
 # PyQtGraph global options
 pg.setConfigOption("background", "w")
@@ -31,6 +31,7 @@ class UserInterface(QtWidgets.QMainWindow):
         self.ui.Starting.valueChanged.connect(self.plot)
         self.ui.Ending.valueChanged.connect(self.plot)
         self.ui.Numpoints_Value.valueChanged.connect(self.plot)
+        self.ui.SaveButton.clicked.connect(self.plot)
         self.ui.Startbutton.clicked.connect(self.plot)
         self.plot()
 
@@ -46,6 +47,14 @@ class UserInterface(QtWidgets.QMainWindow):
         self.ui.plot_widget.setLabel("left", "'I [A]'")
         self.ui.plot_widget.setLabel("bottom", 'U_LED [V]')
         self.ui.plot_widget.show() 
+
+    def save(self):
+        # Het maken van een csv file
+        with open("adruinodata.txt", "w",newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["voltage_LED,Current_resistor"])
+        for u, i in zip(voltagelist,Currentlist):
+            writer.writerow([u,i])
 
 
 def main():
