@@ -4,6 +4,8 @@ import pyqtgraph as pg
 from PySide6.QtCore import Slot
 import numpy as np
 from pythondaq.ui_mainwindow import Ui_MainWindow
+from pythondaq.diode_experiment import DiodeExperiment
+
 
 class UserInterface(QtWidgets.QMainWindow):
     pass
@@ -12,6 +14,11 @@ class UserInterface(QtWidgets.QMainWindow):
 pg.setConfigOption("background", "w")
 pg.setConfigOption("foreground", "k")
 
+port = "ASRL4::INSTR"
+
+Experiment = DiodeExperiment()
+
+voltagelist, Currentlist = Experiment.scan(0,1023)
 
 class UserInterface(QtWidgets.QMainWindow):
 
@@ -31,9 +38,10 @@ class UserInterface(QtWidgets.QMainWindow):
         """The plot module
         """        
         self.ui.plot_widget.clear()
-        x = np.linspace(0, 3.3,100)
-        self.ui.plot_widget.setLabel("left", "sin(x)")
-        self.ui.plot_widget.setLabel("bottom", "x [radians]")
+        x = np.linspace(0, 3.3,1023)
+        self.ui.plot_widget.plot(voltagelist, Currentlist, pen={"color": "k", "width": 5})
+        self.ui.plot_widget.setLabel("left", "'I [A]'")
+        self.ui.plot_widget.setLabel("bottom", 'U_LED [V]')
         self.ui.plot_widget.show() 
 
 
