@@ -28,9 +28,9 @@ class UserInterface(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        # self.ui.Starting.valueChanged.connect(self.plot)
-        # self.ui.Ending.valueChanged.connect(self.plot)
-        # self.ui.Numpoints_Value.valueChanged.connect(self.plot)
+        self.ui.Starting.valueChanged.connect(self.plot)
+        self.ui.Ending.valueChanged.connect(self.plot)
+        self.ui.Numpoints_Value.valueChanged.connect(self.plot)
         self.plot()
 
     @Slot()
@@ -38,13 +38,10 @@ class UserInterface(QtWidgets.QMainWindow):
         """The plot module
         """        
         self.ui.plot_widget.clear()
-        x = np.linspace(0, 3.3,1023)
-        self.ui.plot_widget.plot(voltagelist, Currentlist, pen={"color": "k", "width": 5})
+        self.ui.plot_widget.plot(voltagelist, Currentlist, pen=None, symbol = 'o')
         self.ui.plot_widget.setLabel("left", "'I [A]'")
         self.ui.plot_widget.setLabel("bottom", 'U_LED [V]')
         self.ui.plot_widget.show() 
-
-
 
 
 def main():
