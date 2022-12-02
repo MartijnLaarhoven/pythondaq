@@ -29,9 +29,6 @@ class UserInterface(QtWidgets.QMainWindow):
         self.Experiment = DiodeExperiment()
         self.ui.Startbutton.clicked.connect(self.plot)
         self.ui.SaveButton.clicked.connect(self.save_button_clicked)
-        # self.plot()
-        # start_button.clicked.connect(self.start_button_clicked)
-        # save_button.clicked.connect(self.save_button_clicked)
 
     @Slot()
     def start_button_clicked(self):
