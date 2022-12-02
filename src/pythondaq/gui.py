@@ -47,15 +47,33 @@ class UserInterface(QtWidgets.QMainWindow):
         self.ui.plot_widget.setLabel("left", "'I [A]'")
         self.ui.plot_widget.setLabel("bottom", 'U_LED [V]')
         self.ui.plot_widget.show() 
+        start_button = QtWidgets.QPushButton("Start")
+        start_button.clicked.connect(self.start_button_clicked)
+        save_button = QtWidgets.QPushButton("Savebutton")
+        save_button.clicked.connect(self.save_button_clicked)
 
-    def save(self):
-        # Het maken van een csv file
+    @Slot()
+    def start_button_clicked(self):
+        main()
+
+    # def save(self):
+    #     """Making the cvs file
+    #     """
+    #     with open("adruinodata.txt", "w",newline="") as f:
+    #         writer = csv.writer(f)
+    #         writer.writerow(["voltage_LED,Current_resistor"])
+    #     for u, i in zip(voltagelist,Currentlist):
+    #         writer.writerow([u,i])
+
+    @Slot()
+    def save_button_clicked(self):
+        """Making the cvs file
+        """
         with open("adruinodata.txt", "w",newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["voltage_LED,Current_resistor"])
         for u, i in zip(voltagelist,Currentlist):
             writer.writerow([u,i])
-
 
 def main():
     """main: running the class
