@@ -12,9 +12,7 @@ pg.setConfigOption("foreground", "k")
 
 port = "ASRL4::INSTR"
 
-Experiment = DiodeExperiment()
 
-voltagelist, Currentlist = Experiment.scan(0,1023)
 
 class UserInterface(QtWidgets.QMainWindow):
     """The class of the user interface which makes the interface
@@ -28,12 +26,17 @@ class UserInterface(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.Starting.valueChanged.connect(self.plot)
-        self.ui.Ending.valueChanged.connect(self.plot)
-        self.ui.Numpoints_Value.valueChanged.connect(self.plot)
-        self.ui.SaveButton.clicked.connect(self.plot)
         self.ui.Startbutton.clicked.connect(self.plot)
-        self.plot()
+        # self.plot()
+        start_button = QtWidgets.QPushButton("Start")
+        start_button.clicked.connect(self.start_button_clicked)
+        save_button = QtWidgets.QPushButton("Save")
+        save_button.clicked.connect(self.save_button_clicked)
+        self.Experiment = DiodeExperiment()
+
+    @Slot()
+    def start_button_clicked(self):
+        self.voltagelist, self.Currentlist = self.Experiment.scan(0,1023)
 
     @Slot()
     def plot(self):
@@ -42,28 +45,11 @@ class UserInterface(QtWidgets.QMainWindow):
         self.ui.plot_widget.clear()
         start = int(self.ui.Starting.value() * (1023/3.3))
         end = int(self.ui.Ending.value() * (1023/3.3))
-        voltagelist, Currentlist = Experiment.scan(start,end)
-        self.ui.plot_widget.plot(voltagelist, Currentlist, pen=None, symbol = 'o')
+        self.voltagelist, self.Currentlist = self.Experiment.scan(start,end)
+        self.ui.plot_widget.plot(self.voltagelist, self.Currentlist, pen=None, symbol = 'o')
         self.ui.plot_widget.setLabel("left", "'I [A]'")
         self.ui.plot_widget.setLabel("bottom", 'U_LED [V]')
         self.ui.plot_widget.show() 
-        start_button = QtWidgets.QPushButton("Start")
-        start_button.clicked.connect(self.start_button_clicked)
-        save_button = QtWidgets.QPushButton("Savebutton")
-        save_button.clicked.connect(self.save_button_clicked)
-
-    @Slot()
-    def start_button_clicked(self):
-        main()
-
-    # def save(self):
-    #     """Making the cvs file
-    #     """
-    #     with open("adruinodata.txt", "w",newline="") as f:
-    #         writer = csv.writer(f)
-    #         writer.writerow(["voltage_LED,Current_resistor"])
-    #     for u, i in zip(voltagelist,Currentlist):
-    #         writer.writerow([u,i])
 
     @Slot()
     def save_button_clicked(self):
@@ -72,7 +58,7 @@ class UserInterface(QtWidgets.QMainWindow):
         with open("adruinodata.txt", "w",newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["voltage_LED,Current_resistor"])
-        for u, i in zip(voltagelist,Currentlist):
+        for u, i in zip(self.voltagelist,self.Currentlist):
             writer.writerow([u,i])
 
 def main():
