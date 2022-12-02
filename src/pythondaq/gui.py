@@ -12,8 +12,6 @@ pg.setConfigOption("foreground", "k")
 
 port = "ASRL4::INSTR"
 
-
-
 class UserInterface(QtWidgets.QMainWindow):
     """The class of the user interface which makes the interface
 
@@ -32,6 +30,8 @@ class UserInterface(QtWidgets.QMainWindow):
 
     @Slot()
     def start_button_clicked(self):
+        """the module for clicking the start button
+        """        
         self.voltagelist, self.Currentlist = self.Experiment.scan(self.start,self.end)
 
     @Slot()
