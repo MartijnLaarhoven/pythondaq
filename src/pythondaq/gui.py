@@ -26,26 +26,25 @@ class UserInterface(QtWidgets.QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.Startbutton.clicked.connect(self.plot)
-        # self.plot()
-        start_button = QtWidgets.QPushButton("Start")
-        start_button.clicked.connect(self.start_button_clicked)
-        save_button = QtWidgets.QPushButton("Save")
-        save_button.clicked.connect(self.save_button_clicked)
         self.Experiment = DiodeExperiment()
+        self.ui.Startbutton.clicked.connect(self.plot)
+        self.ui.SaveButton.clicked.connect(self.save_button_clicked)
+        # self.plot()
+        # start_button.clicked.connect(self.start_button_clicked)
+        # save_button.clicked.connect(self.save_button_clicked)
 
     @Slot()
     def start_button_clicked(self):
-        self.voltagelist, self.Currentlist = self.Experiment.scan(0,1023)
+        self.voltagelist, self.Currentlist = self.Experiment.scan(self.start,self.end)
 
     @Slot()
     def plot(self):
         """The plot module
         """
         self.ui.plot_widget.clear()
-        start = int(self.ui.Starting.value() * (1023/3.3))
-        end = int(self.ui.Ending.value() * (1023/3.3))
-        self.voltagelist, self.Currentlist = self.Experiment.scan(start,end)
+        self.start = int(self.ui.Starting.value() * (1023/3.3))
+        self.end = int(self.ui.Ending.value() * (1023/3.3))
+        self.voltagelist, self.Currentlist = self.Experiment.scan(self.start,self.end)
         self.ui.plot_widget.plot(self.voltagelist, self.Currentlist, pen=None, symbol = 'o')
         self.ui.plot_widget.setLabel("left", "'I [A]'")
         self.ui.plot_widget.setLabel("bottom", 'U_LED [V]')
@@ -58,8 +57,8 @@ class UserInterface(QtWidgets.QMainWindow):
         with open("adruinodata.txt", "w",newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["voltage_LED,Current_resistor"])
-        for u, i in zip(self.voltagelist,self.Currentlist):
-            writer.writerow([u,i])
+            for u, i in zip(self.voltagelist,self.Currentlist):
+                writer.writerow([u,i])
 
 def main():
     """main: running the class
