@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="paard"/>
+  <qresource prefix="newPrefix">
+    <file>paardje.jpg</file>
+  </qresource>
+  <qresource prefix="paard_knabbelt">
+    <file>hoofdfoto-paard-knabbelt-aan-stam-.webp</file>
+  </qresource>
+  <qresource/>
+</RCC>

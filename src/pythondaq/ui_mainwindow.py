@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDoubleSpinBox, QHBoxLayout, QLabel,
-    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
-    QSpinBox, QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDoubleSpinBox, QHBoxLayout,
+    QLabel, QMainWindow, QMenuBar, QPushButton,
+    QSizePolicy, QSpinBox, QStatusBar, QVBoxLayout,
+    QWidget)
 
 from pyqtgraph import PlotWidget
 
@@ -28,16 +29,16 @@ class Ui_MainWindow(object):
         MainWindow.resize(880, 694)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
         self.plot_widget = PlotWidget(self.centralwidget)
         self.plot_widget.setObjectName(u"plot_widget")
-        self.plot_widget.setGeometry(QRect(30, 50, 781, 421))
-        self.widget = QWidget(self.centralwidget)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(30, 470, 779, 89))
-        self.horizontalLayout_3 = QHBoxLayout(self.widget)
+
+        self.verticalLayout.addWidget(self.plot_widget)
+
+        self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.Starting = QDoubleSpinBox(self.widget)
+        self.Starting = QDoubleSpinBox(self.centralwidget)
         self.Starting.setObjectName(u"Starting")
         self.Starting.setMinimum(0.000000000000000)
         self.Starting.setMaximum(3.300000000000000)
@@ -45,12 +46,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.Starting)
 
-        self.label = QLabel(self.widget)
+        self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
 
         self.horizontalLayout_3.addWidget(self.label)
 
-        self.Ending = QDoubleSpinBox(self.widget)
+        self.Ending = QDoubleSpinBox(self.centralwidget)
         self.Ending.setObjectName(u"Ending")
         self.Ending.setMinimum(0.000000000000000)
         self.Ending.setMaximum(3.300000000000000)
@@ -58,12 +59,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.Ending)
 
-        self.label_2 = QLabel(self.widget)
+        self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
 
         self.horizontalLayout_3.addWidget(self.label_2)
 
-        self.Numpoints_Value = QSpinBox(self.widget)
+        self.Numpoints_Value = QSpinBox(self.centralwidget)
         self.Numpoints_Value.setObjectName(u"Numpoints_Value")
         self.Numpoints_Value.setMinimum(2)
         self.Numpoints_Value.setMaximum(100)
@@ -71,26 +72,33 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.Numpoints_Value)
 
-        self.label_3 = QLabel(self.widget)
+        self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
-        self.horizontalLayoutWidget = QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(40, 560, 771, 80))
-        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.Startbutton = QPushButton(self.horizontalLayoutWidget)
+        self.Startbutton = QPushButton(self.centralwidget)
         self.Startbutton.setObjectName(u"Startbutton")
 
         self.horizontalLayout.addWidget(self.Startbutton)
 
-        self.SaveButton = QPushButton(self.horizontalLayoutWidget)
+        self.select_device = QComboBox(self.centralwidget)
+        self.select_device.setObjectName(u"select_device")
+
+        self.horizontalLayout.addWidget(self.select_device)
+
+        self.SaveButton = QPushButton(self.centralwidget)
         self.SaveButton.setObjectName(u"SaveButton")
 
         self.horizontalLayout.addWidget(self.SaveButton)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)

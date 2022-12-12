@@ -1,4 +1,7 @@
-import pyvisa
+try:
+    from nsp2visasim import sim_pyvisa as pyvisa
+except ModuleNotFoundError:
+    import pyvisa
 
 class ArduinoVISADevice:
     """The class ArduinoVISADevice which gets and sets the values of the experiment
@@ -63,6 +66,13 @@ class ArduinoVISADevice:
         """
         return int(self.device.query(f"MEAS:CH{channel}?")) * (3.3/1023)
 
+    # def set_input_resistance(self):
+    #     """_summary_
+    #     """
+
+    #     return self.device.query()
+
+
     def turn_off_device(self):
         """turning off the device afterwards
 
@@ -70,6 +80,8 @@ class ArduinoVISADevice:
             varible: putting the output value of channel 0 to 0
         """
         return self.device.query(f"OUT:CH0 {0}")
+
+        
 
 # class list_devices:
 #     """The class to list the devices
